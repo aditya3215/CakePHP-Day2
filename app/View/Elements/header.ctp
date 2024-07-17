@@ -16,7 +16,7 @@
         <div class="d-flex pr-2">
             <div class="dropdown d-inline-block">
                 <span class="d-none d-xl-inline-block ml-1" key="t-henry"
-                >Welcome Henry</span
+                >Velocity</span
                 >&nbsp;&nbsp;
                 <?php echo $this->Html->link(
                     'Logout',

@@ -18,10 +18,12 @@
             </a>
             </li>
             <li>
-            <a href="#" class="waves-effect">
-                <?php echo $this->Html->tag('i', '', array('class' => 'mdi mdi-weather-night')); ?>
-                <span>Category</span>
-            </a>
+            <?php echo $this->Html->link(
+                    $this->Html->tag('i', '', array('class' => 'mdi mdi-weather-night')) . '<span>Category</span>',
+                    array('controller' => 'category', 'action' => 'listcategory'),
+                    array('class' => 'waves-effect', 'escape' => false)
+                );
+            ?>
             </li>
         </ul>
         </div>
