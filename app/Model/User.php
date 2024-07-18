@@ -16,6 +16,7 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel{
 
+
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['password'])) {
 
@@ -30,7 +31,7 @@ class User extends AppModel{
         return true;
     }
 
-    // validation for Login 
+    // Server Side validation for User Login anf registration functionality 
     public $validate = array(
         'email' => array(
             'rule' => 'notBlank',

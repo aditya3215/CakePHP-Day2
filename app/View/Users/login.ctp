@@ -11,13 +11,14 @@
     <div class="card-body pt-2">
         <div class="p-2">
                 <?php echo $this->Flash->render('auth'); ?>
-                <?php echo $this->Form->create('User',['novalidate' => true]); ?>
+                <?php echo $this->Form->create('User',['novalidate' => true,'class' => 'sample']); ?>
                 <div class="form-group">
                     <?php echo $this->Form->input('email', array(
                                 'type' => 'email',
                                 'label' => 'Email',
                                 'class' => 'form-control',
-                                'placeholder' => 'Enter Email'
+                                'placeholder' => 'Enter Email',
+                                'data-rule-email' => 'true'
                             )); ?>
                 </div>
                 <div>
@@ -26,7 +27,8 @@
                             'type' => 'password',
                             'label' => 'Password',
                             'class' => 'form-control',
-                            'placeholder' => 'Enter password'
+                            'placeholder' => 'Enter password',
+                            'data-rule-passwd' => 'true'
                         )); 
                     ?>
                 </div>

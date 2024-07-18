@@ -1,10 +1,17 @@
 <?php 
 
+/*
+* BOC: Article Model
+* PURPOSE: This model represents the Article table in the database and contains the logic
+*          for interacting with Article data. It includes validation rules for Article attributes.
+* CREATED BY: Aditya Verma ON 17-July-2024
+* PMS ID: #151708
+*/
 App::uses('AppModel','Model');
 
 class Article extends AppModel{
 
-    
+    // Belongs to Association of Article Table with category Table
     public $belongsTo = array(
         'Category' => array(
             'className' => 'Category',
@@ -12,7 +19,7 @@ class Article extends AppModel{
         )
     );
 
-    // Validation for saving article and editing it
+    // Server side Validation for saving Article and Editing it
     public $validate = array(
         'articles_name' => array(
             'rule' => 'notBlank',
@@ -30,5 +37,11 @@ class Article extends AppModel{
         )
     ); 
 }
-
+/*
+* EOC: Article Model
+* PURPOSE: This model represents the Article table in the database and contains the logic
+*          for interacting with Article data. It includes validation rules for Article attributes.
+* CREATED BY: Aditya Verma ON 17-July-2024
+* PMS ID: #151708
+*/
 ?>

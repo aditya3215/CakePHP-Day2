@@ -13,17 +13,20 @@
         <div class="card-body pt-0">
             <div class="py-4 px-2">
             <?php echo $this->Flash->render('auth'); ?>
-            <?php echo $this->Form->create('User',['novalidate' => true]); ?>
+            <?php echo $this->Form->create('User',['novalidate' => true,'class' => 'sample']); ?>
                 <div class="form-group">
                     <?php echo $this->Form->input('name', array(
                         'type' => 'text',
                         'label' => 'Full Name',
+                        'data-rule-mandatory' => 'true',
                         'class' => 'form-control',
                         'placeholder' => 'Enter Full Name'
+
                     )); ?>
                 </div>
                 <div class="form-group">
                 <?php echo $this->Form->input('email', array(
+                        'data-rule-email' => 'true',
                         'type' => 'text',
                         'label' => 'Email',
                         'class' => 'form-control',
@@ -34,6 +37,7 @@
                 <div>
                     <?php
                         echo $this->Form->input('password', array(
+                            'data-rule-passwd' => 'true',
                             'type' => 'password',
                             'label' => 'Password',
                             'class' => 'form-control',

@@ -24,7 +24,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                    <?php echo $this->Form->create('Category',['novalidate' => true]); ?>
+                    <?php echo $this->Form->create('Category',['novalidate' => true,'class' => 'sample']); ?>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">

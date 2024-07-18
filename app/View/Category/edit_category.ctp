@@ -25,7 +25,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                    <?php echo $this->Form->create('Category'); ?>
+                    <?php echo $this->Form->create('Category',['novalidate' => true,'class' => 'sample']); ?>
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
                                 <div class="form-group">
@@ -62,6 +62,7 @@
                                                 'Active' => 'Active',
                                                 'Inactive' => 'Inactive'
                                             ],
+                                            'data-rule-mandatory' => 'true',
                                             'default' => $this->request->data['Category']['status'] // Set the default value
                                         ]);
                                         echo $this->Form->input('id', array('type' => 'hidden'));

@@ -26,7 +26,7 @@
         <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-            <?php echo $this->Form->create('Article'); ?>
+            <?php echo $this->Form->create('Article',['novalidate' => true,'class' => 'sample']); ?>
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="form-group">
@@ -37,6 +37,7 @@
                                         'Active' => 'Active',
                                         'Inactive' => 'Inactive'
                                     ],
+                                    'data-rule-mandatory' => 'true',
                                     'default' => $this->request->data['Article']['status'] // Set the default value
                                 ]);
                                 echo $this->Form->input('id', array('type' => 'hidden'));
@@ -53,6 +54,7 @@
                         'options' => $categories,
                         'class' => 'form-control',
                         'empty' => 'Select a Category',
+                        'data-rule-mandatory' => 'true',
                         'label' =>['text' => 'Category', 'class' => 'form-label']
                     ));
                     ?>

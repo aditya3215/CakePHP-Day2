@@ -26,7 +26,7 @@
         <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-            <?php echo $this->Form->create('Article',['novalidate' => true]); ?>
+            <?php echo $this->Form->create('Article',['novalidate' => true,'class' => 'sample']); ?>
                 <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
@@ -36,6 +36,7 @@
                         'options' => $categories,
                         'class' => 'form-control',
                         'empty' => 'Select a Category',
+                        'data-rule-mandatory' => 'true',
                         'label' =>['text' => 'Category', 'class' => 'form-label']
                     ));
                     ?>

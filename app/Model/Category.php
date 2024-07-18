@@ -12,7 +12,7 @@ App::uses('AppModel','Model');
 
 class Category extends AppModel{
 
-    // validation functions for category inputs on Adding category and Editing category page
+    // server side validation functions for category inputs on Adding category and Editing category page
     public $validate = array(
         'categories_name' => array(
             'rule' => 'notBlank',

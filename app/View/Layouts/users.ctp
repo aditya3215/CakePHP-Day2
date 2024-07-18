@@ -15,6 +15,11 @@
             '/img/favicon.ico', // Path to the favicon
             array('rel' => 'shortcut icon')
         );
+        echo $this->Html->script([
+            'jquery',
+            'jquery.validate',
+            'validation'
+        ]);
 	?>
 </head>
 
