@@ -41,6 +41,14 @@ class Category extends AppModel{
         
         return !$this->hasAny($conditions);
     }
+
+    // setting associativity with article Table
+    public $hasMany = array(
+        'Article' => array(
+            'className' => 'Article',
+            'foreignKey' => 'category_id'
+        )
+    );
 }
 
 /*

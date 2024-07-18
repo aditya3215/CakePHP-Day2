@@ -1,12 +1,3 @@
-<!-- <h1>Edit Category</h1> -->
-<?php
-// echo $this->Form->create('Category');
-// echo $this->Form->input('categories_name');
-// echo $this->Form->input('categories_slug');
-// echo $this->Form->input('status');
-// echo $this->Form->input('id', array('type' => 'hidden'));
-// echo $this->Form->end('Save Post');
-?>
 
 <div class="main-content">
     <div class="page-content">
@@ -80,11 +71,17 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 mt-4 text-right">
-                                <?php echo $this->Form->end(array(
-                                    'label' => 'Submit',
-                                    'class' => 'btn btn-primary mb-2 mt-1',
-                                    'div' => false
-                                )); ?>
+                            <?php echo $this->Form->end(array(
+                                'label' => 'Submit',
+                                'class' => 'btn btn-primary mb-2 mt-1',
+                                'div' => false
+                            )); ?>
+                            <button style="background-color: white; color: white;" class="btn btn-secondary ml-2 mb-2 mt-1">
+                                <?php echo $this->Html->link(
+                                    'Cancel',
+                                    array('action' => 'listcategory'));
+                                ?>
+                            </button>
                             </div>
                         </div>
                     </div>

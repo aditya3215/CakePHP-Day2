@@ -10,6 +10,13 @@ App::uses('Appcontroller','controller');
 
 class CategoryController extends AppController{
 
+    public $paginate = array(
+        'limit' => 5, // Number of records per page
+        'order' => array(
+            'Category.date_added' => 'desc' // Order by created field descending
+        )
+    );
+
     // for authentication
     public function beforeFilter(){
         parent::beforeFilter();
@@ -45,7 +52,8 @@ class CategoryController extends AppController{
     // Method to list all category
     public function listCategory(){
         $this->layout = 'plain';
-        $this->set('Category',$this->Category->find('all'));
+        $Categories = $this->paginate('Category');
+        $this->set('Category', $Categories);
     }
 
     // Method to Edit Category Details
