@@ -31,7 +31,7 @@
                                     <?php echo $this->Form->input('categories_name', array(
                                             'type' => 'text',
                                             'class' => 'form-control',
-                                            'id' => 'FirstName',
+                                            'id' => 'categoryName',
                                             'placeholder' => '',
                                             'data-rule-mandatory' => 'true'
                                         ));
@@ -43,7 +43,7 @@
                                     <?php echo $this->Form->input('categories_slug', array(
                                             'type' => 'text',
                                             'class' => 'form-control',
-                                            'id' => 'LastName',
+                                            'id' => 'slug',
                                             'placeholder' => '',
                                             'data-rule-mandatory' => 'true'
                                         ));

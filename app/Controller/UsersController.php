@@ -19,6 +19,7 @@ class UsersController extends AppController{
         $this->layout = 'users';
         $this->User->recursive = 0;
         $this->set('user', $this->paginate());
+        $this->redirect(['controller'=>'Users','action'=>'login']);
     }
     
     // Method for Login fucntionality

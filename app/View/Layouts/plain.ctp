@@ -18,7 +18,8 @@
             echo $this->Html->script([
                 'jquery',
                 'jquery.validate',
-                'validation'
+                'validation',
+                'GenerateSlug'
             ]);
         ?>
     </head>
