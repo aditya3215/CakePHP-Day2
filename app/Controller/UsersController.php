@@ -31,6 +31,22 @@ class UsersController extends AppController{
         }
     }
 
+    // Registration Method
+    public function register(){
+        $this->layout = 'users';
+            if ($this->request->is('post')) {
+                $this->User->create();
+                if ($this->User->save($this->request->data)) {
+                    $this->Flash->success(__('The user has been saved'));
+                    return $this->redirect(array('controller'=> 'Users','action' => 'login'));
+                }
+                $this->Flash->error(
+                    __('The user could not be saved. Please, try again.')
+                );
+            }
+    }
+
+
     // Method for Logout Functionality
     public function logout(){
         $this->Auth->logout();

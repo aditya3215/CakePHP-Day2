@@ -16,21 +16,37 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel{
 
+    public function beforeSave($options = array()) {
+        if (isset($this->data[$this->alias]['password'])) {
+
+            // making a object of BlowFishPasswordHasher to make convert password to hash
+            $passwordHasher = new BlowfishPasswordHasher();
+
+            // storing the has value in the password (Passing current password into hash)
+            $this->data[$this->alias]['password'] = $passwordHasher->hash(
+                $this->data[$this->alias]['password']
+            );
+        }
+        return true;
+    }
+
     // validation for Login 
     public $validate = array(
         'email' => array(
-            'required' => array(
-                'rule' => 'notBlank',
-                'message' => 'User name is Required!'
-            )
+            'rule' => 'notBlank',
+            'message' => 'Email is required!'
         ),
-        'password'=> array(
-            'required' => array(
-                'rule' => 'notBlank',
-                'message' => 'Password is Required!'
-            )
+        'name' => array(
+            'rule' => 'notBlank',
+            'message' => 'Full Name is required!'
         ),
-    );
+        'password' => array(
+            'notBlank' => array(
+                'rule' => 'notBlank',
+                'message' => 'Password be empty'
+            ),
+        )
+    ); 
 }
 
 /*

@@ -20,10 +20,10 @@ class ArticleController extends AppController{
     // for authentication
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('index');
-        $this->Auth->allow('addArticle');
-        $this->Auth->allow('listArticle');
-        $this->Auth->allow('editArticle');
+        // $this->Auth->allow('index');
+        // $this->Auth->allow('addArticle');
+        // $this->Auth->allow('listArticle');
+        // $this->Auth->allow('editArticle');
     }
 
     // Default method

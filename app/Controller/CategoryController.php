@@ -20,10 +20,10 @@ class CategoryController extends AppController{
     // for authentication
     public function beforeFilter(){
         parent::beforeFilter();
-        $this->Auth->allow('index');
-        $this->Auth->allow('addCategory');
-        $this->Auth->allow('listCategory');
-        $this->Auth->allow('editCategory');
+        // $this->Auth->allow('index');
+        // $this->Auth->allow('addCategory');
+        // $this->Auth->allow('listCategory');
+        // $this->Auth->allow('editCategory');
     }
 
     // Default method

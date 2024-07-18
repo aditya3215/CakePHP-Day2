@@ -31,27 +31,28 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    public function beforeFilter() {
+        // Allowing only login and register actions to be accessible without authentication
+        $this->Auth->allow('login', 'register');
+    }
     public $components = array(
         'Flash',
         'Auth' => array(
             'loginRedirect' => array(
-                'controller' => 'Category',
-                'action' => 'addCategory'
+                'controller' => 'Article',
+                'action' => 'listarticle'
             ),
             'logoutRedirect' => array(
                 'controller' => 'user',
                 'action' => 'login'
             ),
+
             'authenticate' => array(
                 'Form' => array(
-                    'userModel' => 'UserDetail',
-                    'fields' => array(
-                        'email' => 'email', 'password' => 'password'
-                    )
-                    // 'passwordHasher' => 'Blowfish',
-                    //    'scope' => array('User.bu_status' => 1)
+                    'fields' => array('username' => 'email'),
+                    'passwordHasher' => 'Blowfish'
                 )
-            )
+            ),
         )
     );
     
