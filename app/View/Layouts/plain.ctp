@@ -25,6 +25,8 @@
     </head>
     <body  data-sidebar="dark">
         <div id="layout-wrapper">
+        <?php echo $this->Flash->render(); ?>
+
             <!-- Header -->
             <?php echo $this->element('header'); ?>
 
@@ -32,7 +34,6 @@
             <?php echo $this->element('sidebar'); ?>
             
             <!-- Main content -->
-            <?php echo $this->Flash->render(); ?>
             <?php echo $this->fetch('content'); ?>
 
             <!-- footer -->

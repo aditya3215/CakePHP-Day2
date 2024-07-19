@@ -19,6 +19,13 @@ class UsersController extends AppController{
         $this->layout = 'users';
         $this->User->recursive = 0;
         $this->set('user', $this->paginate());
+        // Log
+        if($this->Auth->user()){
+            $user = $this->Auth->user();
+            CakeLog::write('Debug', $user['id'].'/'.$user['name'].'/UserContoller/index()-Inside Index Action of Users Controller.');
+        }else{
+            CakeLog::write('Debug', 'none/none/UserContoller/index()-Inside Index Action of Users Controller.');
+        }
         $this->redirect(['controller'=>'Users','action'=>'login']);
     }
     
@@ -27,6 +34,13 @@ class UsersController extends AppController{
         $this->layout = 'users';
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
+                // Logging details
+                if($this->Auth->user()){
+                    $user = $this->Auth->user();
+                    CakeLog::write('Debug', $user['id'].'/'.$user['name'].'/UsersContoller/login()-User Logged in Successfully.');
+                }else{
+                    CakeLog::write('Debug', '_/_/UsersContoller/login()-User Logged in Successfully.');
+                }
                 return $this->redirect($this->Auth->redirectUrl());
             }
             $this->Flash->error(__('Invalid username or password, try again'));
@@ -39,6 +53,13 @@ class UsersController extends AppController{
             if ($this->request->is('post')) {
                 $this->User->create();
                 if ($this->User->save($this->request->data)) {
+                    // Logging details
+                    if($this->Auth->user()){
+                        $user = $this->Auth->user();
+                        CakeLog::write('Debug', $user['id'].'/'.$user['name'].'/UsersContoller/register()-User Registered Successfully.');
+                    }else{
+                        CakeLog::write('Debug', '_/_/UsersContoller/register()-User Registered Successfully.');
+                    }
                     $this->Flash->success(__('The user has been saved'));
                     return $this->redirect(array('controller'=> 'Users','action' => 'login'));
                 }
@@ -52,6 +73,13 @@ class UsersController extends AppController{
     // Method for Logout Functionality
     public function logout(){
         $this->Auth->logout();
+        // Logging details
+        if($this->Auth->user()){
+            $user = $this->Auth->user();
+            CakeLog::write('Debug', $user['id'].'/'.$user['name'].'/UsersContoller/logout()-User Logout Successfully.');
+        }else{
+            CakeLog::write('Debug', '_/_/UsersContoller/logout()-User Logout Successfully.');
+        }
         $this->redirect(['action'=>'login']);
     }    
 }

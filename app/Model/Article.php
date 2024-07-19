@@ -16,7 +16,12 @@ class Article extends AppModel{
         'Category' => array(
             'className' => 'Category',
             'foreignKey' => 'category_id'
+        ),
+        'User' => array(
+            'className' => 'User',
+            'foreignKey' => 'author',
         )
+
     );
 
     // Server side Validation for saving Article and Editing it

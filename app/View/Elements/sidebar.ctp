@@ -6,14 +6,16 @@
         <!-- Left Menu Start -->
         <ul class="metismenu list-unstyled" id="side-menu">
             <li>
-            <a href="#" class="waves-effect">
-                <?php echo $this->Html->tag('i', '', array('class' => 'mdi mdi-file-document-box-outline')); ?>
-                <span>Dashboard</span>
-            </a>
+            <?php echo $this->Html->link(
+                    '<span>Dashboard</span>',
+                    array('controller' => 'article', 'action' => 'index'),
+                    array('class' => 'waves-effect', 'escape' => false)
+                );
+            ?>
             </li>
             <li>
             <?php echo $this->Html->link(
-                    $this->Html->tag('i', '', array('class' => 'mdi mdi-weather-night')) . '<span>Articles</span>',
+                    '<span>Articles</span>',
                     array('controller' => 'article', 'action' => 'listarticle'),
                     array('class' => 'waves-effect', 'escape' => false)
                 );
@@ -21,7 +23,7 @@
             </li>
             <li>
             <?php echo $this->Html->link(
-                    $this->Html->tag('i', '', array('class' => 'mdi mdi-weather-night')) . '<span>Category</span>',
+                    '<span>Category</span>',
                     array('controller' => 'category', 'action' => 'listcategory'),
                     array('class' => 'waves-effect', 'escape' => false)
                 );

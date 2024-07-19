@@ -39,10 +39,13 @@
                         'div' => false
                     )); ?>
                 </div>
-                <?php echo $this->Html->link(
-                'Sign Up',
-                array('controller' => 'Users', 'action' => 'register')
-            ); ?>
+                <div style="margin-top: 3%;">
+                    <?php echo $this->Html->link(
+                        'Sign Up',
+                        array('controller' => 'Users', 'action' => 'register')
+                    ); ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>

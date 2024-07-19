@@ -29,6 +29,13 @@ class CategoryController extends AppController{
     // Default method
     public function index(){
         $this->layout = 'plain';
+        // Logging details
+        if($this->Auth->user()){
+            $user = $this->Auth->user();
+            CakeLog::write('Debug', $user['id'].'/'.$user['name'].'/CategoryContoller/index()-Inside Index method.');
+        }else{
+            CakeLog::write('Debug', '_/_/CategoryContoller/index()-Inside Index Method.');
+        }
     }
 
     // Method to add new category
@@ -43,6 +50,14 @@ class CategoryController extends AppController{
                 }
             }
             if ($this->Category->save($this->request->data)) {
+                // Logging details
+                if($this->Auth->user()){
+                    $user = $this->Auth->user();
+                    CakeLog::write('Debug', $user['id'].'/'.$user['name'].'/CategoryContoller/addCategory()-Category Created Successfully.');
+                }else{
+                    CakeLog::write('Debug', '_/_/CategoryContoller/addCategory()-Category Created Successfully.');
+                }
+                // Success Message
                 $this->Flash->success(__('Your post has been saved.'));
                 return $this->redirect(array('controller' => 'Category', 'action' => 'listcategory'));
             }
@@ -53,6 +68,13 @@ class CategoryController extends AppController{
     public function listCategory(){
         $this->layout = 'plain';
         $Categories = $this->paginate('Category');
+        // Logging details
+        if($this->Auth->user()){
+            $user = $this->Auth->user();
+            CakeLog::write('Debug', $user['id'].'/'.$user['name'].'/CategoryContoller/listCategory()-Inside list Category.');
+        }else{
+            CakeLog::write('Debug', '_/_/CategoryContoller/listCategory()-Inside list Category.');
+        }
         $this->set('Category', $Categories);
     }
 
@@ -72,6 +94,13 @@ class CategoryController extends AppController{
         if ($this->request->is(array('post', 'put'))) {
             $this->Category->id = $id;
             if ($this->Category->save($this->request->data)) {
+                // Logging details
+                if($this->Auth->user()){
+                    $user = $this->Auth->user();
+                    CakeLog::write('Debug', $user['id'].'/'.$user['name'].'/CategoryContoller/editCategory()-Category Details Edited Successfully.');
+                }else{
+                    CakeLog::write('Debug', '_/_/CategoryContoller/editCategory()-Category Details Edited Successfully.');
+                }
                 // If the blog is saved successfully then show success message
                 $this->Flash->success(__('Your post has been updated.'));
                 return $this->redirect(array('action' => 'listcategory'));
