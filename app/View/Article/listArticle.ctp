@@ -2,6 +2,7 @@
 <div class="page-content">
     <div class="container-fluid">
     <!-- start page title -->
+    <?php echo $this->Flash->render(); ?>
     <div class="row">
         <div class="col-12">
         <div
@@ -12,7 +13,7 @@
             <div class="page-title-right">
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item">
-                <a href="javascript: void(0);">Home</a>
+                <?php echo $this->Html->link('Home', array('controller' => 'Article', 'action' => 'index')); ?>
                 </li>
                 <li class="breadcrumb-item active">Article</li>
             </ol>
@@ -60,9 +61,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($Article as $key=>$art):?>
+                    <?php 
+                    
+                    $currentPage = $this->Paginator->params['paging']['Article']['page'];
+                    $itemsPerPage = $this->Paginator->params['paging']['Article']['limit'];
+                    // Calculate the starting serial number for the current page
+                    $serialNumber = ($currentPage - 1) * $itemsPerPage + 1;
+                    foreach ($Article as $key=>$art):?>
                     <tr>
-                        <th scope="row"><?php echo $key+1; ?></th>
+                        <th scope="row"><?php echo $key+$serialNumber ; ?></th>
                         <td><?php echo h($art['Article']['articles_name']) ?></td>
                         <td><?php echo h($art['Category']['categories_name']); ?></td>
                         <td>

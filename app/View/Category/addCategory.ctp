@@ -2,6 +2,7 @@
     <div class="page-content">
         <div class="container-fluid">
         <!-- start page title -->
+        <?php echo $this->Flash->render(); ?>
         <div class="row">
             <div class="col-12">
             <div class="page-title-box d-flex align-items-center justify-content-between">
@@ -9,10 +10,10 @@
                 <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item">
-                    <a href="javascript: void(0);">Home</a>
+                    <?php echo $this->Html->link('Home', array('controller' => 'Category', 'action' => 'index')); ?>
                     </li>
                     <li class="breadcrumb-item">
-                    <a href="javascript: void(0);">Category</a>
+                    <?php echo $this->Html->link('Category', array('controller' => 'Category', 'action' => 'listcategory')); ?>
                     </li>
                     <li class="breadcrumb-item active">Add Category</li>
                 </ol>

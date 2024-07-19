@@ -3,8 +3,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $this->fetch('title'); ?>
+        Blogs Application
 	</title>
 	<?php
 		echo $this->Html->css('bootstrap.min');
@@ -31,7 +30,6 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
-                <?php echo $this->Flash->render(); ?>
                 <?php echo $this->fetch('content'); ?>
                 </div>
             </div>

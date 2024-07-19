@@ -1,1 +1,1 @@
-<div id="<?php echo h($key) ?>Message" class="message error"><?php echo h($message) ?></div>
+<div id="<?php echo h($key) ?>Message" style="color: red; background-color: #fff; border-radius: 41px; font-size: 15px; padding: 3px; margin: -10px auto; text-align: center;" class="message error"><?php echo h($message) ?></div>
