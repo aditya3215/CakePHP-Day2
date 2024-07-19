@@ -58,8 +58,7 @@ class CategoryController extends AppController{
                     CakeLog::write('Debug', '_/_/CategoryContoller/addCategory()-Category Created Successfully.');
                 }
                 // Success Message
-                $this->Flash->success(__('Your post has been saved.'));
-                return $this->redirect(array('controller' => 'Category', 'action' => 'listcategory'));
+                $this->Flash->success(__('New Category Added!'));
             }
         }
     }
@@ -102,8 +101,7 @@ class CategoryController extends AppController{
                     CakeLog::write('Debug', '_/_/CategoryContoller/editCategory()-Category Details Edited Successfully.');
                 }
                 // If the blog is saved successfully then show success message
-                $this->Flash->success(__('Your post has been updated.'));
-                return $this->redirect(array('action' => 'listcategory'));
+                $this->Flash->success(__('Category Edited!'));
             }
             $this->Flash->error(__('Unable to update your post.'));
         }

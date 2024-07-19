@@ -38,31 +38,6 @@ class ArticleController extends AppController{
         }
     }
 
-    // function for sending email on Article Creation
-    protected function sendArticleCreatedEmail($article)
-    {
-        $user = $this->Auth->user();
-        $this->loadModel('Category');
-        $categoryName = $this->Category->field('categories_name', array('id' => $article['Article']['category_id']));
-        $this->loadModel('User');
-        $allUsers = $this->User->find('all');
-        foreach ($allUsers as $val) {
-            if($val['User']['email']!==$user['email']){
-                $Email = new CakeEmail('default');
-                $Email->to($val['User']['email']) 
-                        ->template('new_article', 'default') 
-                        ->emailFormat('html')
-                        ->subject('New Article Added. Go checkout📜!')
-                        ->viewVars(array(
-                            'article' => $article,
-                            'user' => $user,
-                            'categoryName' => $categoryName
-                        ))
-                        ->send();
-            }
-        }
-    }
-
     // Method to add new Article
     public function addArticle(){
         $this->layout = 'plain';
@@ -83,8 +58,7 @@ class ArticleController extends AppController{
                 }else{
                     CakeLog::write('debug', '_/_/ArticleContoller/addArticle()-Article Created Successfully.');
                 }
-                $this->Flash->success(__('Your Article has been saved.'));
-                return $this->redirect(array('controller' => 'Article', 'action' => 'listarticle'));
+                $this->Flash->success(__('Article Created Successfully and Email sent!'));
             }
         }
 
@@ -93,15 +67,11 @@ class ArticleController extends AppController{
             'fields' => array('Category.id', 'Category.categories_name'),
             'order' => array('Category.categories_name' => 'ASC')
         ));
-
         $user = $this->Auth->user();
         $this->set(compact('user'));
         // Set categories to the view
         $this->set('categories', $categories);
-
     }
-
-    
 
     // Method to list all Article
     public function listArticle(){
@@ -122,63 +92,19 @@ class ArticleController extends AppController{
         $this->set('Article', $articles);
     }
 
-
-    // function for sending email on Article Editing
-    protected function sendArticleEditEmail($article)
-    {
-        // debug(Configure::read('EmailConfig'));
-        $this->loadModel('Category');
-        $categoryName = $this->Category->field('categories_name', array('id' => $article['Article']['category_id']));
-        $this->loadModel('User');
-        $data = $article;
-        $AuthorName = $this->User->field('name', array('id' => $article['Article']['Author']));
-        $Authoremail = $this->User->field('email', array('id' => $article['Article']['Author']));
-        $user['name'] = $AuthorName;
-        $allUsers = $this->User->find('all');
-        // Example of looping through users and printing their details
-        foreach ($allUsers as $val) {
-            // Access user details
-            if($val['User']['email']!==$Authoremail){
-                $Email = new CakeEmail('default');
-                $Email->to($val['User']['email']) 
-                        ->template('new_article', 'default') 
-                        ->emailFormat('html')
-                        ->subject('Article Updated. Go checkout📜🤔!')
-                        ->viewVars(array(
-                            'article' => $article,
-                            'user' => $user,
-                            'categoryName' => $categoryName
-                        ))
-                        ->send();
-            }
-        }
-    }
-
     // Method to Edit Article Details
     public function editArticle($id){
         $this->layout = 'plain';
-
-        if (!$id) {
-            throw new NotFoundException(__('Invalid post'));
-        }
-        // Storing the post data with the given ID
-        $Article = $this->Article->findById($id);
-        if (!$Article) {
-            throw new NotFoundException(__('Invalid post'));
-        }
-
-        // trimming all the values before storing
-        foreach ($this->request->data['Article'] as $key => $value) {
-            if (is_string($value)) {
-                $this->request->data['Article'][$key] = trim($value);
-            }
-        }
-
-        $this->Article->id = $id;
-
         // checking if the Request type is POST or PUT
         if ($this->request->is(array('post', 'put'))) {
+
             $this->Article->id = $id;
+            // trimming all the values before storing
+            foreach ($this->request->data['Article'] as $key => $value) {
+                if (is_string($value)) {
+                    $this->request->data['Article'][$key] = trim($value);
+                }
+            }
             if ($this->Article->save($this->request->data)) {
                 $this->sendArticleEditEmail($this->Article->findById($id));
                 // Logging details
@@ -189,14 +115,13 @@ class ArticleController extends AppController{
                     CakeLog::write('Debug', '_/_//ArticleContoller/editArticle()-Article details Editted (Article ID: '.$id.')');
                 }
                 // If the blog is saved successfully then show success message
-                $this->Flash->success(__('Your post has been updated.'));
-                return $this->redirect(array('action' => 'listarticle'));
+                $this->Flash->success(__('Article Edited Successfully and Email sent!'));
             }
             $this->Flash->error(__('Unable to update your post.'));
         }
         // if the response is empty then Re-store the previous data.
         if (!$this->request->data) {
-            $this->request->data = $Article;
+            $this->request->data = $this->Article->findById($id);
         }
 
          // Fetch categories

@@ -12,6 +12,7 @@
         </div>
         <div class="card-body pt-0">
             <div class="py-4 px-2">
+            <?php echo $this->Flash->render(); ?>
             <?php echo $this->Flash->render('auth'); ?>
             <?php echo $this->Form->create('User',['novalidate' => true,'class' => 'sample']); ?>
                 <div class="form-group">

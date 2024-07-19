@@ -43,7 +43,7 @@ class UsersController extends AppController{
                 }
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error(__('Invalid username or password, try again'));
+            $this->Flash->error(__('Invalid username or password!'));
         }
     }
 
@@ -60,7 +60,7 @@ class UsersController extends AppController{
                     }else{
                         CakeLog::write('Debug', '_/_/UsersContoller/register()-User Registered Successfully.');
                     }
-                    $this->Flash->success(__('The user has been saved'));
+                    $this->Flash->success2(__('User Created Successfully!'));
                     return $this->redirect(array('controller'=> 'Users','action' => 'login'));
                 }
                 $this->Flash->error(
@@ -80,6 +80,7 @@ class UsersController extends AppController{
         }else{
             CakeLog::write('Debug', '_/_/UsersContoller/logout()-User Logout Successfully.');
         }
+        $this->Flash->error(__('Logout Successful!'));
         $this->redirect(['action'=>'login']);
     }    
 }

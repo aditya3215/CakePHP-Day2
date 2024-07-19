@@ -2,14 +2,18 @@
 <html lang="en">
     <head>
         <title>
-            <?php echo $cakeDescription ?>:
-            <?php echo $this->fetch('title'); ?>
+            Blogs Application
         </title>
         <?php
-            echo $this->Html->meta('icon', 'assets/images/favicon.ico', array('type' => 'icon')); 
+            // echo $this->Html->meta('icon', 'assets/images/favicon.ico', array('type' => 'icon')); 
             echo $this->Html->css('bootstrap.min');
             echo $this->Html->css('icons.min');
+            echo $this->Html->css('icons');
+            echo $this->Html->css('roboto');
             echo $this->Html->css('app.min');
+            echo $this->Html->css('materialdesignicons');
+            echo $this->Html->css('style');
+
             echo $this->Html->link(
                 '', // Empty string for the link text
                 '/img/favicon.ico', // Path to the favicon
@@ -25,7 +29,6 @@
     </head>
     <body  data-sidebar="dark">
         <div id="layout-wrapper">
-        <?php echo $this->Flash->render(); ?>
 
             <!-- Header -->
             <?php echo $this->element('header'); ?>

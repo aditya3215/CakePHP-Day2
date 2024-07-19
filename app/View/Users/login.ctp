@@ -10,6 +10,7 @@
     </div>
     <div class="card-body pt-2">
         <div class="p-2">
+                <?php echo $this->Flash->render(); ?>
                 <?php echo $this->Flash->render('auth'); ?>
                 <?php echo $this->Form->create('User',['novalidate' => true,'class' => 'sample']); ?>
                 <div class="form-group">

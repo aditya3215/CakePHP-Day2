@@ -36,6 +36,7 @@ class AppController extends Controller {
         $this->Auth->allow('login', 'register');
     }
     public $components = array(
+        'DebugKit.Toolbar',
         'Flash',
         'Auth' => array(
             'loginRedirect' => array(
@@ -50,10 +51,65 @@ class AppController extends Controller {
             'authenticate' => array(
                 'Form' => array(
                     'fields' => array('username' => 'email'),
+                    // 'fields' => array('password' => 'password'),
                     'passwordHasher' => 'Blowfish'
                 )
             ),
         )
     );
+     // function for sending email on Article Creation
+    protected function sendArticleCreatedEmail($article)
+    {
+        $user = $this->Auth->user();
+        $this->loadModel('Category');
+        $categoryName = $this->Category->field('categories_name', array('id' => $article['Article']['category_id']));
+        $this->loadModel('User');
+        $allUsers = $this->User->find('all');
+        foreach ($allUsers as $val) {
+            if($val['User']['email']!==$user['email']){
+                $Email = new CakeEmail('default');
+                $Email->to($val['User']['email']) 
+                        ->template('new_article', 'default') 
+                        ->emailFormat('html')
+                        ->subject('New Article Added. Go checkout📜!')
+                        ->viewVars(array(
+                            'article' => $article,
+                            'user' => $user,
+                            'categoryName' => $categoryName
+                        ))
+                        ->send();
+            }
+        }
+    }
+     // function for sending email on Article Editing
+    protected function sendArticleEditEmail($article)
+    {
+        // debug(Configure::read('EmailConfig'));
+        $this->loadModel('Category');
+        $categoryName = $this->Category->field('categories_name', array('id' => $article['Article']['category_id']));
+        $this->loadModel('User');
+        $data = $article;
+        $AuthorName = $this->User->field('name', array('id' => $article['Article']['Author']));
+        $Authoremail = $this->User->field('email', array('id' => $article['Article']['Author']));
+        $user['name'] = $AuthorName;
+        $allUsers = $this->User->find('all');
+        // Example of looping through users and printing their details
+        foreach ($allUsers as $val) {
+            // Access user details
+            if($val['User']['email']!==$Authoremail){
+                $Email = new CakeEmail('default');
+                $Email->to($val['User']['email']) 
+                        ->template('new_article', 'default') 
+                        ->emailFormat('html')
+                        ->subject('Article Updated. Go checkout📜🤔!')
+                        ->viewVars(array(
+                            'article' => $article,
+                            'user' => $user,
+                            'categoryName' => $categoryName
+                        ))
+                        ->send();
+            }
+        }
+    }
     
 }

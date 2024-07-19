@@ -3,12 +3,12 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $this->fetch('title'); ?>
+        Blogs Application
 	</title>
 	<?php
 		echo $this->Html->css('bootstrap.min');
-		echo $this->Html->css('icons.min');
+		echo $this->Html->css('style');
+        echo $this->Html->css('icons.min');
 		echo $this->Html->css('app.min');
         echo $this->Html->link(
             '', // Empty string for the link text
@@ -31,7 +31,6 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
-                <?php echo $this->Flash->render(); ?>
                 <?php echo $this->fetch('content'); ?>
                 </div>
             </div>

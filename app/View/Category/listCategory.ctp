@@ -12,7 +12,8 @@
             <div class="page-title-right">
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item">
-                <a href="javascript: void(0);">Home</a>
+                    <?php echo $this->Html->link('Home', array('controller' => 'Category', 'action' => 'index')); ?>
+                    </li>
                 </li>
                 <li class="breadcrumb-item active">Category</li>
             </ol>
@@ -59,9 +60,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($Category as $key=>$cat):?>
+                    <?php 
+                    $currentPage = $this->Paginator->params['paging']['Category']['page'];
+                    $itemsPerPage = $this->Paginator->params['paging']['Category']['limit'];
+                    // Calculate the starting serial number for the current page
+                    $serialNumber = ($currentPage - 1) * $itemsPerPage + 1;
+                    foreach ($Category as $key=>$cat):?>
                     <tr>
-                        <th scope="row"><?php echo $key+1; ?></th>
+                        <th scope="row"><?php echo $serialNumber + $key; ?></th>
                         <td><?php echo $cat['Category']['id']?></td>
                         <td><?php echo $cat['Category']['categories_name']?></td>
                         <td>
@@ -81,8 +87,8 @@
                 </table>
             </div>
 
-             <!-- Pagination links -->
-             <div class="paginator">
+            <!-- Pagination links -->
+            <div class="paginator">
                 <ul>
                     <?php echo $this->Paginator->prev('« Previous'); ?>
                     <?php echo $this->Paginator->numbers(); ?>
