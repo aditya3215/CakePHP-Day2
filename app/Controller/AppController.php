@@ -36,6 +36,7 @@ class AppController extends Controller {
         $this->Auth->allow('login', 'register');
     }
     public $components = array(
+        'DebugKit.Toolbar',
         'Flash',
         'Auth' => array(
             'loginRedirect' => array(
@@ -50,7 +51,7 @@ class AppController extends Controller {
             'authenticate' => array(
                 'Form' => array(
                     'fields' => array('username' => 'email'),
-                    'fields' => array('password' => 'password'),
+                    // 'fields' => array('password' => 'password'),
                     'passwordHasher' => 'Blowfish'
                 )
             ),

@@ -12,6 +12,8 @@
             echo $this->Html->css('roboto');
             echo $this->Html->css('app.min');
             echo $this->Html->css('materialdesignicons');
+            echo $this->Html->css('style');
+
             echo $this->Html->link(
                 '', // Empty string for the link text
                 '/img/favicon.ico', // Path to the favicon

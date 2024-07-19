@@ -7,7 +7,8 @@
 	</title>
 	<?php
 		echo $this->Html->css('bootstrap.min');
-		echo $this->Html->css('icons.min');
+		echo $this->Html->css('style');
+        echo $this->Html->css('icons.min');
 		echo $this->Html->css('app.min');
         echo $this->Html->link(
             '', // Empty string for the link text
